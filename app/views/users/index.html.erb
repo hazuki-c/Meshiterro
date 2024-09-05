@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'list', user: @user %>
+      <%= render 'books/list', book: @books %>
+    </div> 
+  
+    <div class="col-md-8 offset-md-1">  
+      <h1>Users</h1>
+        <% @users.each do |user| %>
+        
+          <table>
+            <tr>
+              <th>image</th>
+              <th>name</th>
+              <th></th>
+            </tr>
+            
+            <tr>
+              <td>
+                <% if user.profile_image.attached? %>
+                <%= image_tag user.profile_image, size: "100x100" %>
+                <% else %>
+                  <%= image_tag 'no_image', size: "100x100" %>
+                <% end %>
+              </td>
+              <td>
+                <%= user.name %>
+              </td>
+              <td>
+                 <%= link_to "Show", user_path(user.id) %>
+              </td>
+            </tr>
+          </table>
+          
+        <% end %>
+      </div>   
+  </div>
+</div>  
+  
+  </div>
+</div>  

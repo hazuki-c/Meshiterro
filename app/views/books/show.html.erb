@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+      <%= render 'users/list', user: @user %>
+      <%= render 'list', book: @new_book %>
+    </div> 
+  
+    <div class="col-md-8 offset-md-1">   
+      <h2>Book detail</h2>
+         <%= form_with model: @book, url: book_path(@book) do |f| %>
+          <div style="display: flex;">
+            
+           <div>
+             <% if @book.user.profile_image.attached? %>
+               <%= image_tag @book.user.profile_image, size: "100x100" %>
+             <% else %>
+               <%= image_tag 'no_image', size: "100x100" %>
+             <% end %>
+           </div>
+             
+             <div>
+               <a href="<%= user_path(@user) %>"><%= @book.user.name %></a>        
+             </div>
+           </div>
+          
+            <div>
+              <span>
+                <a href="<%= book_path(@book) %>"><%= @book.title %></a>
+              </span>
+              <span>
+                <%= @book.body %>
+              </span>
+              
+               <% if @book.user == current_user %>
+                <div>
+                  <span>
+                    <%= link_to "Edit", edit_book_path(@book) %>
+                  </span>
+                  <span>
+                    <%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "本当に削除しますか？"} %>
+                  </span>
+                </div>
+               <% end %>
+            </div>
+         <% end %>
+      </div>   
+      
+  </div>
+</div>     

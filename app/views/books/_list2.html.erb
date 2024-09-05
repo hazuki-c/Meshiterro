@@ -1,0 +1,20 @@
+<% @users.each do |user| %>
+<% @books.each do |book| %>
+<table>
+  <tr>
+    <td>
+      <% if user.profile_image.attached? %>
+        <%= image_tag user.profile_image, size: "100x100" %>
+      <% else %>
+        <%= image_tag 'no_image', size: "100x100" %>
+      <% end %>
+    </td>
+    <td>
+      <%= book.title %>
+    </td>
+    <td>
+      <%= book.body %>
+    </td>
+
+<% end %>
+<% end %>
